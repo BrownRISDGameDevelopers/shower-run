@@ -1,0 +1,1 @@
+Folder for artists to put raw assets in
