@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,10 +13,30 @@ public class GameManager : MonoBehaviour
     [SerializeField] float maxSanity;
     public float Sanity { get; private set; }
 
+    [Header("Player")]
+    [SerializeField] string playerGameObjectString;
+    public GameObject Player { get; private set; }
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        if(Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
         Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Player = GameObject.Find(playerGameObjectString).gameObject;
     }
 
     // Update is called once per frame
@@ -29,12 +50,17 @@ public class GameManager : MonoBehaviour
         Sanity += value;
     }
 
+    public void SetSanity(float value)
+    {
+        Sanity = value;
+    }
+
     public void ResetSanity()
     {
         Sanity = 0f;
     }
 
-    public void MaxSanity()
+    public void SetMaxSanity()
     {
         Sanity = maxSanity;
     }
