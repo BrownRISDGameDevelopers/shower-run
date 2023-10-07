@@ -12,8 +12,6 @@ public class MouseLook : MonoBehaviour
 
     float xRotation = 0f;
 
-    Vector2 mousemovement;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -23,10 +21,8 @@ public class MouseLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        mousemovement = Mouse.current.delta.ReadValue();
-        
-        float mouseX = mousemovement.x * mouseSensitivity; //* Time.deltaTime;
-        float mouseY = mousemovement.y * mouseSensitivity; //* Time.deltaTime;
+        float mouseX = Mouse.current.delta.ReadValue().x * mouseSensitivity; //* Time.deltaTime;
+        float mouseY = Mouse.current.delta.ReadValue().y * mouseSensitivity; //* Time.deltaTime;
 
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
