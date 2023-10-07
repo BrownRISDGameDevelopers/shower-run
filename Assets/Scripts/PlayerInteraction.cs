@@ -18,9 +18,7 @@ public class PlayerInteraction : MonoBehaviour
     
     public void OnInteract()
     {
-        Debug.Log("Interact");
         RaycastHit hit;
-        Debug.DrawRay(raycastOrigin.position, raycastOrigin.forward * 1000, Color.green, 6);
         if (Physics.Raycast(raycastOrigin.position, raycastOrigin.forward, out hit, interactRange, _interactLayer))
         {
             Debug.Log("Interacted with object");
