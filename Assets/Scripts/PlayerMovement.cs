@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
         float relativeSpeedMultiplier = limit - Vector3.Dot(_playerBody.velocity, moveDirection.normalized);
         
-        _playerBody.AddForce(moveDirection * (multiplier * relativeSpeedMultiplier));
+        _playerBody.AddRelativeForce(moveDirection * (multiplier * relativeSpeedMultiplier));
     }
 
     private void OnEnable() { _actions.gameplay.Enable(); }
