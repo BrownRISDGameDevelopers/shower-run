@@ -1,43 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    [Header("Related to the Raycast")]
-    [SerializeField] float interactRange = 2.5f;
-    [SerializeField] Transform raycastPosition; //Where the raycast is shot from on the player's body
-    [SerializeField] LayerMask interactLayer;
+    [Header("Raycasting")]
+    [SerializeField] private float interactRange = 2.5f;
+    [FormerlySerializedAs("raycastPosition")] [SerializeField] private Transform raycastOrigin; //Where the raycast is shot from on the player's body
+    
+    private LayerMask _interactLayer; 
 
-    [Header("Player Input")]
-    [SerializeField] KeyCode interactKey;
-
-    // Update is called once per frame
-    void Update()
-    {
-        CheckRaycast();
+    void Start()
+    { 
+        _interactLayer = LayerMask.NameToLayer("Interactable"); 
     }
-
-    void CheckRaycast()
+    
+    public void OnInteract()
     {
+        Debug.Log("Interact");
         RaycastHit hit;
-
-        if (Physics.Raycast(raycastPosition.position, transform.forward, out hit, interactRange, interactLayer))
+        Debug.DrawRay(raycastOrigin.position, raycastOrigin.TransformDirection(Vector3.forward) * interactRange);
+        if (Physics.Raycast(raycastOrigin.position, raycastOrigin.TransformDirection(Vector3.forward), out hit, interactRange, _interactLayer))
         {
-            LookingAtInteractableObject(hit);
+            Debug.Log("Object was interacted with");
         }
-    }
-
-    void LookingAtInteractableObject(RaycastHit hit)
-    {
-        if(Input.GetKeyDown(interactKey))
-        {
-            InteractedWithObject();
-        }
-    }
-
-    void InteractedWithObject()
-    {
-        Debug.Log("Object was interacted with");
     }
 }
