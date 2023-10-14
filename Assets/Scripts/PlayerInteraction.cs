@@ -11,7 +11,6 @@ public class PlayerInteraction : MonoBehaviour
     
     private LayerMask _interactLayer; 
     private Rigidbody _playerBody;
-    private bool _isHiding = false;
 
     void Start()
     { 
@@ -25,13 +24,15 @@ public class PlayerInteraction : MonoBehaviour
     
     public void OnInteract()
     {
-        if (_isHiding)
+        if (GameManager.Instance.isHiding)
         {
             ExitHiding();
+            GameManager.Instance.isHiding = false;
         }
         else if (Physics.Raycast(raycastOrigin.position, raycastOrigin.forward, out var hit, interactRange, _interactLayer))
         {
-           EnterHiding(hit.transform); 
+           EnterHiding(hit.transform);
+           GameManager.Instance.isHiding = true;
         }
     }
 

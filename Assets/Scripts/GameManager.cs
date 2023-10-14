@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] string playerGameObjectString;
     public GameObject Player { get; private set; }
 
+    public bool isHiding { get; set; } = false;
+
     // Start is called before the first frame update
     void Awake()
     {
