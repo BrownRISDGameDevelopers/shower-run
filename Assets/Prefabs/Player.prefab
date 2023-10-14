@@ -455,4 +455,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sensitivity: 1
-  playerTransform: {fileID: 0}
+  playerTransform: {fileID: 1611147913425058062}
