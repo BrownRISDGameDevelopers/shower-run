@@ -12,6 +12,11 @@ public class PlayerInteraction : MonoBehaviour
     private LayerMask _interactLayer; 
     private Rigidbody _playerBody;
     private bool _isHiding = false;
+    // Store direction that interactable faces, so that character exits in that direction
+    private Quaternion hidingSpotRotation;
+
+    
+
 
     void Start()
     { 
@@ -25,30 +30,46 @@ public class PlayerInteraction : MonoBehaviour
     
     public void OnInteract()
     {
-        if (_isHiding)
-        {
+        
+        if(_isHiding) {
+
             ExitHiding();
-        }
-        else if (Physics.Raycast(raycastOrigin.position, raycastOrigin.forward, out var hit, interactRange, _interactLayer))
+            
+        } else
         {
-           EnterHiding(hit.transform); 
-        }
+            if (Physics.Raycast(raycastOrigin.position, raycastOrigin.forward, out var hit, interactRange, _interactLayer))
+            {
+                EnterHiding(hit.transform); 
+            }
+        }  
+        
+        
     }
 
     private void EnterHiding(Transform other)
     {
             _playerBody.isKinematic = true;
             _playerBody.velocity = Vector3.zero;
+
+            // store hiding spot rotation
+            hidingSpotRotation = other.rotation;
+
             var o = gameObject.transform;
-            o.position = other.position;
-            o.rotation = other.rotation;
+            o.position = new Vector3(other.position.x, o.position.y, other.position.z);
+            o.rotation = Quaternion.Euler(0, other.rotation.eulerAngles.y, 0);
+            _isHiding = true;
             // TODO: limit rotation when hiding
     }
 
     private void ExitHiding()
     {
+        _isHiding = false;
         _playerBody.isKinematic = false;
-        // TODO: Need to change this to follow the behavior talked about with producers
-        gameObject.transform.position += gameObject.transform.forward;
+
+        // Move in the direction the hiding spot looks 
+        gameObject.transform.position += Quaternion.Euler(0, hidingSpotRotation.eulerAngles.y, 0) * Vector3.forward;
+        // Look down the hall
+        gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
+        // gameObject.transform.position += gameObject.transform.forward;
     }
 }
