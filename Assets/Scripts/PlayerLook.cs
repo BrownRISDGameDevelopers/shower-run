@@ -17,10 +17,10 @@ public class PlayerLook: MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    void FixedUpdate()
+    void Update() 
     {
-        _inputLook = _actions.gameplay.look.ReadValue<Vector2>() * sensitivity;
-        
+        _inputLook = _actions.gameplay.look.ReadValue<Vector2>() * sensitivity; //* Time.deltaTime;
+
         _upDownRotation -= _inputLook.y;
         _upDownRotation = Mathf.Clamp(_upDownRotation, -90f, 90f);
 
