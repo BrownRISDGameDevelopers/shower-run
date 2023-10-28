@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
+    public static PlayerInteraction Instance { get; private set; }
+
     [Header("Related to the Raycast")]
     [SerializeField] float interactRange = 2.5f;
     [SerializeField] Transform raycastPosition; //Where the raycast is shot from on the player's body
@@ -13,7 +15,17 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] KeyCode interactKey;
 
     //Temp location for the variable
-    bool isHiding = false;
+    public bool isHiding { get; private set; } = false;
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
 
     // Update is called once per frame
     void Update()
