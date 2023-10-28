@@ -5,27 +5,32 @@ using UnityEngine.Serialization;
 
 public class PlayerInteraction : MonoBehaviour
 {
+    public static PlayerInteraction Instance { get; private set; }
+
     [Header("Raycasting")]
     [SerializeField] private float interactRange = 2.5f;
     [SerializeField] private Transform raycastOrigin; 
     
     private LayerMask _interactLayer; 
     private Rigidbody _playerBody;
-    private bool _isHiding = false;
+    public bool _isHiding { get; private set; } = false;
     // Store direction that interactable faces, so that character exits in that direction
     private Quaternion hidingSpotRotation;
-
-    
-
-
-    void Start()
-    { 
-        _interactLayer = ~LayerMask.NameToLayer("Interactable"); 
-    }
 
     void Awake()
     {
         _playerBody = gameObject.GetComponent<Rigidbody>();
+        if (Instance != null)
+           {
+               Destroy(gameObject);
+               return;
+           }
+           Instance = this;
+    }
+
+    void Start()
+    {
+        _interactLayer = ~LayerMask.NameToLayer("Interactable");
     }
     
     public void OnInteract()
