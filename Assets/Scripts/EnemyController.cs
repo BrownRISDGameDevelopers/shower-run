@@ -37,7 +37,7 @@ public class EnemyController : MonoBehaviour
 
     void CheckIfPlayerInRange()
     {
-        if (CheckDistanceToPlayer() < range && !PlayerInteraction.Instance._isHiding) FoundPlayer();
+        if (CheckDistanceToPlayer() < range && !GameManager.Instance.isHiding) FoundPlayer();
     }
 
     void CheckIfPassedPlayer()

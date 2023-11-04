@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
 
     public Quaternion? HideSpotRotation { get; set; } = null;
 
+    public bool isHiding {get; set; } = false;
+
     // Start is called before the first frame update
     void Awake()
     {
