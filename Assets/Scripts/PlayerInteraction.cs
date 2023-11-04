@@ -51,6 +51,7 @@ public class PlayerInteraction : MonoBehaviour
 
         // store hiding spot rotation
         GameManager.Instance.HideSpotRotation = other.rotation;
+        GameManager.Instance.isHiding = true;
 
         var selfTransform = gameObject.transform;
         selfTransform.position = new Vector3(other.position.x, selfTransform.position.y, other.position.z);
@@ -60,6 +61,7 @@ public class PlayerInteraction : MonoBehaviour
     private void ExitHiding()
     {
         GameManager.Instance.HideSpotRotation = null;
+        GameManager.Instance.isHiding = false;
         _playerBody.isKinematic = false;
 
         // Move in the direction the hiding spot looks 
