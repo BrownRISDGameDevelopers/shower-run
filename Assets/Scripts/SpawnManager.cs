@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
+    Transform player;
+
     //List of all hallway segments. Each segment is a trigger
-    [SerializeField] Transform[] hallwaySegments;
+    [SerializeField] public Transform[] hallwaySegments;
 
     //Number of Enemy Spawns in the Hallway
     [SerializeField] int numberOfEnemySpawns;
@@ -15,12 +17,53 @@ public class SpawnManager : MonoBehaviour
 
     public List<float> x_SpawnPoints { get; private set; } = new List<float>();
 
+    [SerializeField] Transform mobSpawnSpot;
+    [SerializeField] GameObject mob;
+
+    bool canSpawnEnemy = true;
+
     // Start is called before the first frame update
     void Start()
     {
-        ChooseRandomSegments();
+        player = GameObject.Find("Player").transform;
 
+        ChooseRandomSegments();
         ChooseSpawnPoints();
+    }
+
+    private void FixedUpdate()
+    {
+        CheckPlayerXBounds();
+    }
+
+    void CheckPlayerXBounds()
+    {
+        for(int i = 0; i < x_SpawnPoints.Count; i++)
+        {
+            int playerXPosRounded = Mathf.RoundToInt(player.position.x);
+            int spawnPointRounded = Mathf.RoundToInt(x_SpawnPoints[i]);
+
+            if (playerXPosRounded == spawnPointRounded && canSpawnEnemy)
+            {
+                canSpawnEnemy = false;
+                StartCoroutine(SpawnCooldown());
+
+                x_SpawnPoints.Remove(x_SpawnPoints[i]);
+                SpawnMob();
+                break;
+            }
+        }
+    }
+
+    IEnumerator SpawnCooldown()
+    {
+        yield return new WaitForSeconds(.25f);
+        canSpawnEnemy = true;
+    }
+
+    void SpawnMob()
+    {
+        Instantiate(mob, mobSpawnSpot.position, Quaternion.identity);
     }
 
     void ChooseRandomSegments()
@@ -47,6 +90,8 @@ public class SpawnManager : MonoBehaviour
             float xEndingPos = hallwaySegments[i+1].position.x;
 
             float spawnXPos = Random.Range(xStartingPos, xEndingPos);
+
+            Debug.Log("Value is : " + spawnXPos);
             x_SpawnPoints.Add(spawnXPos);
         }
     }
