@@ -153,9 +153,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48f01039c15624e9c87bd2385bae4608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 0
-  incomingRange: 0
-  passedPlayerRange: 0
+  walkSpeed: 5
+  incomingRange: 25
+  passedPlayerRange: 10
+  destroy_XPos: -50
 --- !u!1 &9213337005170258311
 GameObject:
   m_ObjectHideFlags: 0
