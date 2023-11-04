@@ -28,9 +28,9 @@ public class PlayerMovement : MonoBehaviour
         var inputDirection = _actions.gameplay.move.ReadValue<Vector2>();
         var moveDirection = new Vector3(inputDirection.x, 0f, inputDirection.y);
 
-        float relativeSpeedMultiplier = limit - Vector3.Dot(_playerBody.velocity, moveDirection.normalized);
+        float relativeSpeedMultiplier = limit - Mathf.Clamp(Mathf.Abs(Vector3.Dot(_playerBody.velocity, moveDirection.normalized)), 0f, 1f);
         
-        _playerBody.AddRelativeForce(moveDirection * (multiplier * relativeSpeedMultiplier));
+        _playerBody.AddRelativeForce(moveDirection.normalized * (multiplier * relativeSpeedMultiplier));
     }
 
     private void OnEnable() { _actions.gameplay.Enable(); }
