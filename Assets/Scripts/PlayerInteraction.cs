@@ -7,15 +7,18 @@ public class PlayerInteraction : MonoBehaviour
 {
     public static PlayerInteraction Instance { get; private set; }
 
+    [SerializeField] private GameObject eyeWall;
+    [SerializeField] private PlayerLook look;
+
     [Header("Raycasting")]
     [SerializeField] private float interactRange = 2.5f;
     [SerializeField] private Transform raycastOrigin;
 
-    private LayerMask _interactLayer; 
+    private LayerMask _interactLayer;
     private Rigidbody _playerBody;
     // Store direction that interactable faces, so that character exits in that direction
     private Quaternion _hidingSpotRotation;
-    
+
     void Awake()
     {
         _playerBody = gameObject.GetComponent<Rigidbody>();
@@ -31,7 +34,19 @@ public class PlayerInteraction : MonoBehaviour
     {
         _interactLayer = ~LayerMask.NameToLayer("Interactable");
     }
-    
+
+    void OnCollisionEnter(Collision collision)
+    {
+        // is called when the player collides with another object
+        if (collision.gameObject == eyeWall)
+        {
+            Debug.Log("Player Dies");
+            GameManager.Instance.isDead = true; // setting GameManager boolean to indicate player death
+            _playerBody.isKinematic = true; // stopping movement from key input
+            GetComponentInChildren<PlayerLook>().OnDisable(); // disables ability to look around based on mouse input
+        }
+    }
+
     public void OnInteract()
     {
         if (GameManager.Instance.HideSpotRotation is not null || GameManager.Instance.isHiding)
@@ -40,8 +55,8 @@ public class PlayerInteraction : MonoBehaviour
         }
         else if (Physics.Raycast(raycastOrigin.position, raycastOrigin.forward, out var hit, interactRange, _interactLayer))
         {
-            EnterHiding(hit.transform); 
-        }  
+            EnterHiding(hit.transform);
+        }
     }
 
     private void EnterHiding(Transform other)
@@ -57,7 +72,8 @@ public class PlayerInteraction : MonoBehaviour
         selfTransform.position = new Vector3(other.position.x, selfTransform.position.y, other.position.z);
         // Access eulerAngles with null-conditional operator
         Vector3 eulerAngles = GameManager.Instance.HideSpotRotation.Value.eulerAngles;
-        if (eulerAngles != null) {
+        if (eulerAngles != null)
+        {
             selfTransform.rotation = Quaternion.Euler(0, eulerAngles.y, 0);
             // Do something with the non-null eulerAngles
         }
@@ -70,14 +86,16 @@ public class PlayerInteraction : MonoBehaviour
 
         // Move in the direction the hiding spot looks 
         Vector3 eulerAngles = GameManager.Instance.HideSpotRotation.Value.eulerAngles;
-        if (eulerAngles != null) {
+        if (eulerAngles != null)
+        {
             // Look down the hall  
             // Move in the direction the hiding spot looks 
             gameObject.transform.position += Quaternion.Euler(0, eulerAngles.y, 0) * Vector3.forward;
         }
         GameManager.Instance.HideSpotRotation = null;
-        
+
         gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
         // gameObject.transform.position += gameObject.transform.forward;
     }
+
 }
