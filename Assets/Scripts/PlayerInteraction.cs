@@ -34,7 +34,7 @@ public class PlayerInteraction : MonoBehaviour
     
     public void OnInteract()
     {
-        if (GameManager.Instance.HideSpotRotation is not null)
+        if (GameManager.Instance.HideSpotRotation is not null || GameManager.Instance.isHiding)
         {
             ExitHiding();
         }
@@ -55,18 +55,28 @@ public class PlayerInteraction : MonoBehaviour
 
         var selfTransform = gameObject.transform;
         selfTransform.position = new Vector3(other.position.x, selfTransform.position.y, other.position.z);
-        selfTransform.rotation = Quaternion.Euler(0, _hidingSpotRotation.eulerAngles.y, 0);
+        // Access eulerAngles with null-conditional operator
+        Vector3 eulerAngles = GameManager.Instance.HideSpotRotation.Value.eulerAngles;
+        if (eulerAngles != null) {
+            selfTransform.rotation = Quaternion.Euler(0, eulerAngles.y, 0);
+            // Do something with the non-null eulerAngles
+        }
     }
 
     private void ExitHiding()
     {
-        GameManager.Instance.HideSpotRotation = null;
         GameManager.Instance.isHiding = false;
         _playerBody.isKinematic = false;
 
         // Move in the direction the hiding spot looks 
-        gameObject.transform.position += Quaternion.Euler(0, _hidingSpotRotation.eulerAngles.y, 0) * Vector3.forward;
-        // Look down the hall
+        Vector3 eulerAngles = GameManager.Instance.HideSpotRotation.Value.eulerAngles;
+        if (eulerAngles != null) {
+            // Look down the hall  
+            // Move in the direction the hiding spot looks 
+            gameObject.transform.position += Quaternion.Euler(0, eulerAngles.y, 0) * Vector3.forward;
+        }
+        GameManager.Instance.HideSpotRotation = null;
+        
         gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
         // gameObject.transform.position += gameObject.transform.forward;
     }

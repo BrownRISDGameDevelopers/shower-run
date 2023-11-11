@@ -29,8 +29,14 @@ public class PlayerLook: MonoBehaviour
         if (hideSpotRotation is not null)
         {
             Vector3 objectEulerAngles = hideSpotRotation.Value.eulerAngles;
-            _horizontalLook = Mathf.Clamp(_horizontalLook + inputLook.x, objectEulerAngles.y - 90f, objectEulerAngles.y + 90f);
+            if(objectEulerAngles.y <= 0) {
+                _horizontalLook = Mathf.Clamp(_horizontalLook + inputLook.x, objectEulerAngles.y - 90f, objectEulerAngles.y + 90f);
             transform.localRotation = Quaternion.Euler(_verticalLook, _horizontalLook, 0);
+            } else {
+                _horizontalLook = Mathf.Clamp(_horizontalLook + inputLook.x, objectEulerAngles.y + 90f, objectEulerAngles.y + 270f);
+            transform.localRotation = Quaternion.Euler(_verticalLook, _horizontalLook, 0);
+            }
+            
         }
         else
         {
