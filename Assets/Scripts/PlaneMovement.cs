@@ -14,19 +14,22 @@ public class PlaneMovement : MonoBehaviour
     [SerializeField] private float maxTrailingDistance;
     [SerializeField] private float minSpeed;
     [SerializeField] private Rigidbody player;
-    
+
     void Update()
     {
-        Vector3 planePos = gameObject.transform.position;
-        
-        if (IsFarFromPlayer())
+        if (GameManager.Instance.isDead == false)
         {
-            gameObject.transform.position =
-                new Vector3(player.position.x - maxTrailingDistance, planePos.y, planePos.z);
-        }
-        else
-        {
-            gameObject.transform.position += new Vector3(minSpeed * Time.deltaTime, 0f, 0f);
+            Vector3 planePos = gameObject.transform.position;
+
+            if (IsFarFromPlayer())
+            {
+                gameObject.transform.position =
+                    new Vector3(player.position.x - maxTrailingDistance, planePos.y, planePos.z);
+            }
+            else
+            {
+                gameObject.transform.position += new Vector3(minSpeed * Time.deltaTime, 0f, 0f);
+            }
         }
     }
 

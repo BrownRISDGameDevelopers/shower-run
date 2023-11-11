@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    
+
     public static GameManager Instance { get; private set; }
 
     public float TimeElapsed { get; private set; }
@@ -23,7 +23,8 @@ public class GameManager : MonoBehaviour
 
     public Quaternion? HideSpotRotation { get; set; } = null;
 
-    public bool isHiding {get; set; } = false;
+    public bool isHiding { get; set; } = false;
+    public bool isDead { get; set; } = false;
 
     // Start is called before the first frame update
     void Awake()

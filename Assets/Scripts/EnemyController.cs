@@ -24,15 +24,18 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        WalkForward();
-        CheckIfPassedPlayer();
-        CheckIfPlayerInRange();
-        CheckIfReachedMaxDistance();
+        if (GameManager.Instance.isDead == false)
+        {
+            WalkForward();
+            CheckIfPassedPlayer();
+            CheckIfPlayerInRange();
+            CheckIfReachedMaxDistance();
+        }
     }
 
     void WalkForward()
     {
-        if(isWalking) transform.Translate(transform.right * walkSpeed * Time.deltaTime);
+        if (isWalking) transform.Translate(transform.right * walkSpeed * Time.deltaTime);
     }
 
     void CheckIfPlayerInRange()
