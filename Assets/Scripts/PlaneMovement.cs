@@ -13,7 +13,6 @@ public class PlaneMovement : MonoBehaviour
     /// </summary>
     [SerializeField] private float maxTrailingDistance;
     [SerializeField] private float minSpeed;
-    [SerializeField] private Rigidbody player;
 
     void Update()
     {
@@ -24,7 +23,7 @@ public class PlaneMovement : MonoBehaviour
             if (IsFarFromPlayer())
             {
                 gameObject.transform.position =
-                    new Vector3(player.position.x - maxTrailingDistance, planePos.y, planePos.z);
+                    new Vector3(GameManager.Instance.Player.transform.position.x - maxTrailingDistance, planePos.y, planePos.z);
             }
             else
             {
@@ -35,6 +34,6 @@ public class PlaneMovement : MonoBehaviour
 
     private bool IsFarFromPlayer()
     {
-        return (player.position - gameObject.transform.position).x > maxTrailingDistance;
+        return (GameManager.Instance.Player.transform.position - gameObject.transform.position).x > maxTrailingDistance;
     }
 }
