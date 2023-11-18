@@ -13,7 +13,7 @@ public class TeleportManager : MonoBehaviour
 
     private void Start()
     {
-        Instance = this;
+        Instance = this; 
     }
 
     public TeleportController.HallwayTypes DetermineRoom(TeleportController.LeftOrRightDoor door)
