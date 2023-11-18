@@ -18,10 +18,12 @@ public class PlayerInteraction : MonoBehaviour
     private Rigidbody _playerBody;
     // Store direction that interactable faces, so that character exits in that direction
     private Quaternion _hidingSpotRotation;
+    private AudioSource running;
 
     void Awake()
     {
         _playerBody = gameObject.GetComponent<Rigidbody>();
+        running = _playerBody.GetComponent<AudioSource>();
         if (Instance != null)
         {
             Destroy(gameObject);
@@ -55,6 +57,7 @@ public class PlayerInteraction : MonoBehaviour
         }
         else if (Physics.Raycast(raycastOrigin.position, raycastOrigin.forward, out var hit, interactRange, _interactLayer))
         {
+            running.Pause();
             EnterHiding(hit.transform);
         }
     }
