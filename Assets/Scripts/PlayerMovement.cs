@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     
     private Rigidbody _playerBody;
     private PlayerInputActions _actions;
+    private AudioSource running;
+    private int status = 0;
     
     void Awake()
     {
@@ -21,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
         
         Debug.Assert(_playerBody is not null, "Player has no RigidBody attatched");
         Debug.Assert(_actions is not null, "Actions is null");
+        running = _playerBody.GetComponent<AudioSource>();
     }
 
     void FixedUpdate()
@@ -29,8 +32,20 @@ public class PlayerMovement : MonoBehaviour
         var moveDirection = new Vector3(inputDirection.x, 0f, inputDirection.y);
 
         float relativeSpeedMultiplier = limit - Mathf.Clamp(Mathf.Abs(Vector3.Dot(_playerBody.velocity, moveDirection.normalized)), 0f, 1f);
-        
+        if(_playerBody.velocity.x != 0 && _playerBody.velocity.z != 0) {
+
+            if((Mathf.Abs(moveDirection.x) > 0f || Mathf.Abs(moveDirection.z) > 0f) && status == 0) {
+            print("hi");
+            running.Play();
+            status = 1;
+        } else if(Mathf.Abs(moveDirection.x) == 0f && Mathf.Abs(moveDirection.z) == 0f) {
+            print("bye");
+            running.Pause();
+            status = 0;
+        }
+        }
         _playerBody.AddRelativeForce(moveDirection.normalized * (multiplier * relativeSpeedMultiplier));
+        
     }
 
     private void OnEnable() { _actions.gameplay.Enable(); }
