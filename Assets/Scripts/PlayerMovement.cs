@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
         var moveDirection = new Vector3(inputDirection.x, 0f, inputDirection.y);
 
         float relativeSpeedMultiplier = limit - Mathf.Clamp(Mathf.Abs(Vector3.Dot(_playerBody.velocity, moveDirection.normalized)), 0f, 1f);
-        if(_playerBody.velocity.x != 0 && _playerBody.velocity.z != 0) {
+        //if(_playerBody.velocity.x != 0 && _playerBody.velocity.z != 0) {
 
             if((Mathf.Abs(moveDirection.x) > 0f || Mathf.Abs(moveDirection.z) > 0f) && status == 0) {
             print("hi");
@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
             running.Pause();
             status = 0;
         }
-        }
+        //}
         _playerBody.AddRelativeForce(moveDirection.normalized * (multiplier * relativeSpeedMultiplier));
         
     }
