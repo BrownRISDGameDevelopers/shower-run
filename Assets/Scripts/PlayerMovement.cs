@@ -32,7 +32,6 @@ public class PlayerMovement : MonoBehaviour
         var moveDirection = new Vector3(inputDirection.x, 0f, inputDirection.y);
 
         float relativeSpeedMultiplier = limit - Mathf.Clamp(Mathf.Abs(Vector3.Dot(_playerBody.velocity, moveDirection.normalized)), 0f, 1f);
-
         bool receivedMoveInput = ReceiveMoveInput(moveDirection);
 
         if (receivedMoveInput)
