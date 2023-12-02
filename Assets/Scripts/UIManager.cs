@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] GameObject pauseScreen;
+    [SerializeField] GameObject gameOverScreen;
+    [SerializeField] GameObject wonScreen;
 
     bool paused = false;
 
@@ -19,6 +21,18 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         _actions = new PlayerInputActions();
+    }
+
+    private void OnEnable()
+    {
+        EnemyController.foundPlayer += OnGameOver;
+        TeleportManager.Instance.WonGame += OnGameWon;
+    }
+
+    private void OnDisable()
+    {
+        EnemyController.foundPlayer -= OnGameOver;
+        TeleportManager.Instance.WonGame -= OnGameWon;
     }
 
     private void Update()
@@ -56,5 +70,21 @@ public class UIManager : MonoBehaviour
     public void ReturnToMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+
+    void OnGameWon()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        wonScreen.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    void OnGameOver()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        gameOverScreen.SetActive(true);
+        Time.timeScale = 0;
     }
 }
