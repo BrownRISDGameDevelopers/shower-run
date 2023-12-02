@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class TeleportManager : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class TeleportManager : MonoBehaviour
 
     [Header("Points need to be in the order of Party, Standard, Crush, Janitor, NoLights, Bathroom")]
     [SerializeField] Transform[] teleportToPoints;
+
+    public event Action WonGame;
 
     private void Start()
     {
@@ -51,6 +54,7 @@ public class TeleportManager : MonoBehaviour
 
             case 5:
                 depth++;
+                WonGame?.Invoke();
                 return TeleportController.HallwayTypes.Bathroom;
 
             default:
@@ -62,6 +66,9 @@ public class TeleportManager : MonoBehaviour
     public void TeleportPlayer(Transform player, TeleportController.LeftOrRightDoor door)
     {
         TeleportController.HallwayTypes hallway = DetermineRoom(door);
+
+        if (depth == 6) return;
+
         //Teleporting
         player.position = teleportToPoints[DetermineTeleportIndex(hallway)].position;
 

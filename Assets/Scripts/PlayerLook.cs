@@ -9,6 +9,8 @@ public class PlayerLook : MonoBehaviour
     private float _verticalLook = 0f;
     private float _horizontalLook = 0f;
 
+    bool canLook = true;
+
     void Awake()
     {
         _actions = new PlayerInputActions();
@@ -17,6 +19,8 @@ public class PlayerLook : MonoBehaviour
 
     void Update()
     {
+        if (!canLook) return;
+
         var inputLook = _actions.gameplay.look.ReadValue<Vector2>() * sensitivity;
         var player = GameManager.Instance.Player;
 
@@ -47,6 +51,19 @@ public class PlayerLook : MonoBehaviour
         }
     }
 
-    public void OnEnable() { _actions.gameplay.Enable(); }
-    public void OnDisable() { _actions.gameplay.Disable(); }
+    void OnFound()
+    {
+        canLook = false;
+    }
+
+    public void OnEnable()
+    {
+        _actions.gameplay.Enable();
+        EnemyController.foundPlayer += OnFound;
+    }
+    public void OnDisable()
+    {
+        _actions.gameplay.Disable();
+        EnemyController.foundPlayer -= OnFound;
+    }
 }

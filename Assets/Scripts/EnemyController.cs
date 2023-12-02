@@ -15,7 +15,7 @@ public class EnemyController : MonoBehaviour
     bool passedPlayer;
     bool isWalking = true;
 
-    public event Action foundPlayer;
+    public static event Action foundPlayer;
 
     // Start is called before the first frame update
     void Start()
@@ -74,7 +74,7 @@ public class EnemyController : MonoBehaviour
     }
 
     void DestroyEnemy()
-    {
+    { 
         Destroy(gameObject);
     }
 }
