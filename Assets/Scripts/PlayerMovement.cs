@@ -40,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 running.Play();
                 moveAudioStarted = true;
+                print("playing audio");
             }
             _playerBody.AddRelativeForce(moveDirection.normalized * (multiplier * relativeSpeedMultiplier));
         }

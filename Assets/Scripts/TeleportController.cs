@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class TeleportController : MonoBehaviour
 {
-    [SerializeField] Transform teleportToPoint;
     Transform player;
 
     public enum LeftOrRightDoor { left, right }
