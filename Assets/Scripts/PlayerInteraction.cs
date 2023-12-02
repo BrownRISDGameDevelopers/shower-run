@@ -23,7 +23,7 @@ public class PlayerInteraction : MonoBehaviour
     void Awake()
     {
         _playerBody = gameObject.GetComponent<Rigidbody>();
-        running = _playerBody.GetComponent<AudioSource>();
+        running = gameObject.GetComponent<AudioSource>();
         if (Instance != null)
         {
             Destroy(gameObject);
@@ -42,9 +42,11 @@ public class PlayerInteraction : MonoBehaviour
         // is called when the player collides with another object
         if (collision.gameObject == eyeWall)
         {
+            running.Stop();
             Debug.Log("Player Dies");
             GameManager.Instance.isDead = true; // setting GameManager boolean to indicate player death
-            _playerBody.isKinematic = true; // stopping movement from key input
+            //_playerBody.isKinematic = true; // stopping movement from key input
+            GetComponentInChildren<PlayerMovement>().OnDisable(); //stopping movement & sounds from key input
             GetComponentInChildren<PlayerLook>().OnDisable(); // disables ability to look around based on mouse input
         }
     }

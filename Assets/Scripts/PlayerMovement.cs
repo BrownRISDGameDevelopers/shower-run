@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
         
         Debug.Assert(_playerBody is not null, "Player has no RigidBody attatched");
         Debug.Assert(_actions is not null, "Actions is null");
-        running = _playerBody.GetComponent<AudioSource>();
+        running = gameObject.GetComponent<AudioSource>();
     }
 
     void FixedUpdate()
@@ -55,6 +55,6 @@ public class PlayerMovement : MonoBehaviour
         return (Mathf.Abs(moveDirection.x) > 0f || Mathf.Abs(moveDirection.z) > 0f) && !GameManager.Instance.isHiding;
     }
 
-    private void OnEnable() { _actions.gameplay.Enable(); }
-    private void OnDisable() { _actions.gameplay.Disable(); }
+    public void OnEnable() { _actions.gameplay.Enable(); }
+    public void OnDisable() { _actions.gameplay.Disable(); }
 }
