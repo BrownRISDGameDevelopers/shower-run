@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Player = GameObject.Find(playerGameObjectString).gameObject;
+        if(SceneManager.GetActiveScene().name != "MainMenu") Player = GameObject.Find(playerGameObjectString).gameObject;
     }
 
     // Update is called once per frame
