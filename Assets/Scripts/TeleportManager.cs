@@ -54,7 +54,7 @@ public class TeleportManager : MonoBehaviour
                 return TeleportController.HallwayTypes.Bathroom;
 
             default:
-                Debug.LogError("depth was not valid, deleported to standard hallway");
+                Debug.LogError("depth was not valid, teleported to standard hallway");
                 return TeleportController.HallwayTypes.Standard;
         }
     }

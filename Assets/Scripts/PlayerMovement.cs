@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
         
         Debug.Assert(_playerBody is not null, "Player has no RigidBody attatched");
         Debug.Assert(_actions is not null, "Actions is null");
-        running = _playerBody.GetComponent<AudioSource>();
+        running = gameObject.GetComponent<AudioSource>();
     }
 
     void FixedUpdate()
@@ -40,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 running.Play();
                 moveAudioStarted = true;
+                print("playing audio");
             }
             _playerBody.AddRelativeForce(moveDirection.normalized * (multiplier * relativeSpeedMultiplier));
         }
