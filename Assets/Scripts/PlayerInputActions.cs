@@ -53,6 +53,33 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""f38fe311-3dcb-4af7-96cd-1f93c509a2d5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""click"",
+                    ""type"": ""Button"",
+                    ""id"": ""4767cc69-bed8-4061-bb8c-63e68c993925"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""mousePos"",
+                    ""type"": ""Value"",
+                    ""id"": ""63997a19-b205-445d-b6e8-f97d608c6c49"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -132,6 +159,39 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cb2950db-cda1-47b0-908d-3a57b7b55086"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4b99fabb-3178-437c-a10c-e493cf0092dd"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3cf05372-15ae-46a2-a8c4-37f8c681c490"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""mousePos"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -143,6 +203,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_gameplay_move = m_gameplay.FindAction("move", throwIfNotFound: true);
         m_gameplay_interact = m_gameplay.FindAction("interact", throwIfNotFound: true);
         m_gameplay_look = m_gameplay.FindAction("look", throwIfNotFound: true);
+        m_gameplay_pause = m_gameplay.FindAction("pause", throwIfNotFound: true);
+        m_gameplay_click = m_gameplay.FindAction("click", throwIfNotFound: true);
+        m_gameplay_mousePos = m_gameplay.FindAction("mousePos", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -207,6 +270,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_gameplay_move;
     private readonly InputAction m_gameplay_interact;
     private readonly InputAction m_gameplay_look;
+    private readonly InputAction m_gameplay_pause;
+    private readonly InputAction m_gameplay_click;
+    private readonly InputAction m_gameplay_mousePos;
     public struct GameplayActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -214,6 +280,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @move => m_Wrapper.m_gameplay_move;
         public InputAction @interact => m_Wrapper.m_gameplay_interact;
         public InputAction @look => m_Wrapper.m_gameplay_look;
+        public InputAction @pause => m_Wrapper.m_gameplay_pause;
+        public InputAction @click => m_Wrapper.m_gameplay_click;
+        public InputAction @mousePos => m_Wrapper.m_gameplay_mousePos;
         public InputActionMap Get() { return m_Wrapper.m_gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -232,6 +301,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @look.started += instance.OnLook;
             @look.performed += instance.OnLook;
             @look.canceled += instance.OnLook;
+            @pause.started += instance.OnPause;
+            @pause.performed += instance.OnPause;
+            @pause.canceled += instance.OnPause;
+            @click.started += instance.OnClick;
+            @click.performed += instance.OnClick;
+            @click.canceled += instance.OnClick;
+            @mousePos.started += instance.OnMousePos;
+            @mousePos.performed += instance.OnMousePos;
+            @mousePos.canceled += instance.OnMousePos;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -245,6 +323,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @look.started -= instance.OnLook;
             @look.performed -= instance.OnLook;
             @look.canceled -= instance.OnLook;
+            @pause.started -= instance.OnPause;
+            @pause.performed -= instance.OnPause;
+            @pause.canceled -= instance.OnPause;
+            @click.started -= instance.OnClick;
+            @click.performed -= instance.OnClick;
+            @click.canceled -= instance.OnClick;
+            @mousePos.started -= instance.OnMousePos;
+            @mousePos.performed -= instance.OnMousePos;
+            @mousePos.canceled -= instance.OnMousePos;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -267,5 +354,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
+        void OnClick(InputAction.CallbackContext context);
+        void OnMousePos(InputAction.CallbackContext context);
     }
 }
