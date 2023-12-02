@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class EnemyController : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class EnemyController : MonoBehaviour
 
     bool passedPlayer;
     bool isWalking = true;
+
+    public event Action foundPlayer;
 
     // Start is called before the first frame update
     void Start()
@@ -66,6 +69,7 @@ public class EnemyController : MonoBehaviour
     void FoundPlayer()
     {
         Debug.Log("Player Was Found!");
+        foundPlayer?.Invoke();
         isWalking = false;
     }
 
