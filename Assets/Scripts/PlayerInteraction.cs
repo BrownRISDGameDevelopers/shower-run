@@ -19,11 +19,14 @@ public class PlayerInteraction : MonoBehaviour
     // Store direction that interactable faces, so that character exits in that direction
     private Quaternion _hidingSpotRotation;
     private AudioSource running;
+    private AudioSource ambientNoise;
 
     void Awake()
     {
+        AudioListener.volume = 1;
         _playerBody = gameObject.GetComponent<Rigidbody>();
         running = gameObject.GetComponent<AudioSource>();
+        ambientNoise = gameObject.GetComponent<AudioSource>();
         if (Instance != null)
         {
             Destroy(gameObject);
@@ -42,7 +45,7 @@ public class PlayerInteraction : MonoBehaviour
         // is called when the player collides with another object
         if (collision.gameObject == eyeWall)
         {
-            running.Stop();
+            AudioListener.volume = 0;
             Debug.Log("Player Dies");
             GameManager.Instance.isDead = true; // setting GameManager boolean to indicate player death
             //_playerBody.isKinematic = true; // stopping movement from key input
