@@ -34,14 +34,16 @@ public class UIManager : MonoBehaviour
     {
         if(SceneManager.GetActiveScene().name == "MainMenu") return;
         EnemyController.foundPlayer += OnGameOver;
-        TeleportManager.Instance.WonGame += OnGameWon;
+        PlayerInteraction.touchedPlayer += OnGameOver;
+        TeleportManager.WonGame += OnGameWon;
     }
 
     private void OnDisable()
     {
         if(SceneManager.GetActiveScene().name == "MainMenu") return;
         EnemyController.foundPlayer -= OnGameOver;
-        TeleportManager.Instance.WonGame -= OnGameWon;
+        PlayerInteraction.touchedPlayer -= OnGameOver;
+        TeleportManager.WonGame -= OnGameWon;
     }
 
     private void Update()
