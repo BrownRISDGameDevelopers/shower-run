@@ -16,6 +16,7 @@ public class EnemyController : MonoBehaviour
     bool isWalking = true;
 
     public static event Action foundPlayer;
+    public static GameObject foundBy;
 
     // Start is called before the first frame update
     void Start()
@@ -73,6 +74,7 @@ public class EnemyController : MonoBehaviour
         Debug.Log("Player Was Found!");
         foundPlayer?.Invoke();
         isWalking = false;
+        foundBy = gameObject;
     }
 
     void DestroyEnemy()

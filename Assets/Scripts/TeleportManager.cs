@@ -11,6 +11,8 @@ public class TeleportManager : MonoBehaviour
 
     [Header("Points need to be in the order of Party, Standard, Crush, Janitor, NoLights, Bathroom")]
     [SerializeField] Transform[] teleportToPoints;
+    
+    public static string partySoundsPrefabName = "Party Sounds Group";
 
     public static event Action WonGame;
 
@@ -26,13 +28,33 @@ public class TeleportManager : MonoBehaviour
             //depth of 0 means player is in hallway 0
             case 0:
                 depth++;
-                if (door == TeleportController.LeftOrRightDoor.left) return TeleportController.HallwayTypes.Party;
+                if (door == TeleportController.LeftOrRightDoor.left) { 
+                    // begin playing deafening party sounds
+                    GameObject partySoundsPrefab = Resources.Load<GameObject>(partySoundsPrefabName);
 
+                    if(partySoundsPrefab != null)
+                    {
+                        GameObject instantiatedPrefab = Instantiate(partySoundsPrefab);
+                        instantiatedPrefab.transform.position = new Vector3(434, 0, -130);
+                    }
+                    else
+                    {
+                        Debug.LogError("Prefab not found with the specified name: " + partySoundsPrefabName);
+                    }
+                    return TeleportController.HallwayTypes.Party;
+                }
                 else return TeleportController.HallwayTypes.Standard;
 
             case 1:
                 depth++;
-                if (door == TeleportController.LeftOrRightDoor.left) return TeleportController.HallwayTypes.Standard;
+                // remove deafening party sounds if they exist
+                GameObject partySoundsPrefab2 = GameObject.Find(partySoundsPrefabName + "(Clone)");
+                if (partySoundsPrefab2 != null)
+                {
+                    Destroy(partySoundsPrefab2);
+                }
+
+                if (door == TeleportController.LeftOrRightDoor.left)  return TeleportController.HallwayTypes.Standard;
 
                 else return TeleportController.HallwayTypes.Crush;
 

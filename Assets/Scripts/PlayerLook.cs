@@ -7,6 +7,8 @@ public class PlayerLook : MonoBehaviour
 
     [SerializeField] private bool godMode;
 
+    [SerializeField] private float enemyHeight;
+
     private PlayerInputActions _actions;
     private float _verticalLook = 0f;
     private float _horizontalLook = 0f;
@@ -57,6 +59,7 @@ public class PlayerLook : MonoBehaviour
     {
         if (!godMode) {
             canLook = false;
+            Camera.main.transform.LookAt(EnemyController.foundBy.transform.position + new Vector3(0, enemyHeight, 0));
         }
     }
 
