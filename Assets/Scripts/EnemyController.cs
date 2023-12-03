@@ -16,12 +16,15 @@ public class EnemyController : MonoBehaviour
     bool isWalking = true;
 
     public static event Action foundPlayer;
+    public static GameObject foundBy;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player").transform;
         range = incomingRange;
+        float randomMultiplier = UnityEngine.Random.Range(0.67f, 1.15f);
+        walkSpeed *= randomMultiplier;
     }
 
     // Update is called once per frame
@@ -43,7 +46,7 @@ public class EnemyController : MonoBehaviour
 
     void CheckIfPlayerInRange()
     {
-        if (CheckDistanceToPlayer() < range && !GameManager.Instance.isHiding) FoundPlayer();
+        if (CheckDistanceToPlayer() < range && !GameManager.Instance.isHiding && !(TeleportManager.Instance.depth == 4 && GameManager.Instance.Player.GetComponent<Rigidbody>().velocity.magnitude < 1.0f)) FoundPlayer();
     }
 
     void CheckIfPassedPlayer()
@@ -63,7 +66,7 @@ public class EnemyController : MonoBehaviour
 
     void CheckIfReachedMaxDistance()
     {
-        if (transform.position.x < destroy_XPos) DestroyEnemy();
+        if (player.position.x - transform.position.x > destroy_XPos) DestroyEnemy();
     }
 
     void FoundPlayer()
@@ -71,6 +74,7 @@ public class EnemyController : MonoBehaviour
         Debug.Log("Player Was Found!");
         foundPlayer?.Invoke();
         isWalking = false;
+        foundBy = gameObject;
     }
 
     void DestroyEnemy()
