@@ -92,7 +92,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5881112055020336054}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 4a0d2ecd1eb9df64b8d99d6bf926e917, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -121,4 +121,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxTrailingDistance: 20
   minSpeed: 0.5
-  player: {fileID: 0}

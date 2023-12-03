@@ -504,6 +504,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ingame_UI
       objectReference: {fileID: 0}
+    - target: {fileID: 4876240735140593652, guid: 2b963439a3e9c49d9b32545ef32bdbc4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1407,6 +1412,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Hallway 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4924630409625667787, guid: 09491f89930984a43bc7839cf4ea6dd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7281238913820078155, guid: 09491f89930984a43bc7839cf4ea6dd5,
         type: 3}
