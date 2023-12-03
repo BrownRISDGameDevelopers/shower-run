@@ -20,7 +20,7 @@ public class PlaneMovement : MonoBehaviour
         {
             Vector3 planePos = gameObject.transform.position;
 
-            if (IsFarFromPlayer())
+            if (IsFarFromPlayer() || IsPastPlayer())
             {
                 gameObject.transform.position =
                     new Vector3(GameManager.Instance.Player.transform.position.x - maxTrailingDistance, planePos.y, planePos.z);
@@ -35,5 +35,9 @@ public class PlaneMovement : MonoBehaviour
     private bool IsFarFromPlayer()
     {
         return (GameManager.Instance.Player.transform.position - gameObject.transform.position).x > maxTrailingDistance;
+    }
+
+    private bool IsPastPlayer() {
+        return (GameManager.Instance.Player.transform.position - gameObject.transform.position).x < 0;
     }
 }
