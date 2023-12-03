@@ -146,6 +146,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7281238913820078155}
+  - component: {fileID: 3019738523176718335}
   m_Layer: 0
   m_Name: Hallway 0
   m_TagString: Untagged
@@ -179,8 +180,34 @@ Transform:
   - {fileID: 8458202188649731258}
   - {fileID: 4669347961059940741}
   - {fileID: 4485112136155740982}
+  - {fileID: 4208650361827228849}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3019738523176718335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2622873841166101057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 672b121bedeed488fb89dd44cd03fb54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hallwaySegments:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  numberOfEnemySpawns: 1
+  mobSpawnSpot: {fileID: 4208650361827228849}
+  mob: {fileID: 8118012170066600382, guid: e604a11e645f84e559b93b4692d5a2c6, type: 3}
 --- !u!1 &2953164357180130288
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,6 +434,37 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -1210545434894932621, guid: f6b14599f043c9841801cd89beb818ac, type: 3}
+--- !u!1 &5681075409832781545
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4208650361827228849}
+  m_Layer: 0
+  m_Name: Mob Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4208650361827228849
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5681075409832781545}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 115.64, y: 0, z: 38.52}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7281238913820078155}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6699798554970858002
 GameObject:
   m_ObjectHideFlags: 0
