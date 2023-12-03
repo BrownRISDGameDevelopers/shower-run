@@ -12,7 +12,7 @@ public class TeleportManager : MonoBehaviour
     [Header("Points need to be in the order of Party, Standard, Crush, Janitor, NoLights, Bathroom")]
     [SerializeField] Transform[] teleportToPoints;
 
-    public event Action WonGame;
+    public static event Action WonGame;
 
     private void Start()
     {

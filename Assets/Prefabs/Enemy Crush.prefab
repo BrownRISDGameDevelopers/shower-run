@@ -180,7 +180,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 75
+  MaxDistance: 40
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -418,11 +418,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8113662451844533969, guid: d14c2d1db2afd46f8b2f20a45ca1dafd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3707575cdb2fac44882d9bbd1dfb3a1d, type: 2}
+    - target: {fileID: -6439692978013619079, guid: d14c2d1db2afd46f8b2f20a45ca1dafd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3707575cdb2fac44882d9bbd1dfb3a1d, type: 2}
     - target: {fileID: 919132149155446097, guid: d14c2d1db2afd46f8b2f20a45ca1dafd,
         type: 3}
       propertyPath: m_Name
       value: female npc anim
       objectReference: {fileID: 0}
+    - target: {fileID: 1581014216829998132, guid: d14c2d1db2afd46f8b2f20a45ca1dafd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3707575cdb2fac44882d9bbd1dfb3a1d, type: 2}
+    - target: {fileID: 7116774802218284060, guid: d14c2d1db2afd46f8b2f20a45ca1dafd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3707575cdb2fac44882d9bbd1dfb3a1d, type: 2}
+    - target: {fileID: 7500829582323976533, guid: d14c2d1db2afd46f8b2f20a45ca1dafd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3707575cdb2fac44882d9bbd1dfb3a1d, type: 2}
+    - target: {fileID: 7927558736831396235, guid: d14c2d1db2afd46f8b2f20a45ca1dafd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3707575cdb2fac44882d9bbd1dfb3a1d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
