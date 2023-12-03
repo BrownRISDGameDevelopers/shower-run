@@ -4695,11 +4695,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 6604984124344663122, guid: 7cf102ead6c74e74aa334f62bfa47bca,
+    - target: {fileID: 7736651621457550672, guid: 7cf102ead6c74e74aa334f62bfa47bca,
         type: 3}
-      propertyPath: enemyHeight
-      value: 3
-      objectReference: {fileID: 0}
+      propertyPath: eyeWall
+      value: 
+      objectReference: {fileID: 2046576399}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7355,20 +7355,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4623496580755993602, guid: 2b963439a3e9c49d9b32545ef32bdbc4,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4876240735140593652, guid: 2b963439a3e9c49d9b32545ef32bdbc4,
         type: 3}
       propertyPath: m_Name
       value: Ingame_UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 4876240735140593652, guid: 2b963439a3e9c49d9b32545ef32bdbc4,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11434,7 +11424,7 @@ PrefabInstance:
     - target: {fileID: 3651639168353612646, guid: af5f3af01d0314c478c9329d9bcf7ce1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.57
+      value: -5.3
       objectReference: {fileID: 0}
     - target: {fileID: 3651639168353612646, guid: af5f3af01d0314c478c9329d9bcf7ce1,
         type: 3}
@@ -11496,7 +11486,8 @@ PrefabInstance:
       propertyPath: maxTrailingDistance
       value: 20
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 430829502625024403, guid: af5f3af01d0314c478c9329d9bcf7ce1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -11508,6 +11499,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2046576405}
+    - targetCorrespondingSourceObject: {fileID: 5881112055020336054, guid: af5f3af01d0314c478c9329d9bcf7ce1,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2046576412}
   m_SourcePrefab: {fileID: 100100000, guid: af5f3af01d0314c478c9329d9bcf7ce1, type: 3}
 --- !u!1 &1787917767
 GameObject:
@@ -13114,6 +13109,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &2046576412
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2046576399}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 10.000002, y: 0.5, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &2051267125 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 791831216244292843, guid: ebc99ac5965e0439bbbd1918616d3193,
