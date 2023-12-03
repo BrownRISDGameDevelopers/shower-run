@@ -6,20 +6,20 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: d80ca7d245ee3497dab1e27871f68df4
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/LucianScene.unity
     guid: ccce9f0c3f242441e92c6c5fc7e22db0
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/LucianScene2Test.unity
     guid: 45947365a57974b90846d56170e03d2e
   - enabled: 1
     path: Assets/Scenes/hearnest.unity
     guid: 0b0a539df32af3844953a57a8dcd160b
-  - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: d80ca7d245ee3497dab1e27871f68df4
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 2d352219532db9f4a89bbbc9cd41777d,
       type: 2}
