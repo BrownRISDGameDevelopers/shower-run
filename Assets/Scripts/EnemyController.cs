@@ -72,9 +72,9 @@ public class EnemyController : MonoBehaviour
     void FoundPlayer()
     {
         Debug.Log("Player Was Found!");
-        foundPlayer?.Invoke();
         isWalking = false;
         foundBy = gameObject;
+        foundPlayer?.Invoke();
     }
 
     void DestroyEnemy()
