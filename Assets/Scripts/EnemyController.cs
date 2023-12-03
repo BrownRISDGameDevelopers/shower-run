@@ -22,6 +22,8 @@ public class EnemyController : MonoBehaviour
     {
         player = GameObject.Find("Player").transform;
         range = incomingRange;
+        float randomMultiplier = UnityEngine.Random.Range(0.67f, 1.15f);
+        walkSpeed *= randomMultiplier;
     }
 
     // Update is called once per frame
@@ -63,7 +65,7 @@ public class EnemyController : MonoBehaviour
 
     void CheckIfReachedMaxDistance()
     {
-        if (transform.position.x < destroy_XPos) DestroyEnemy();
+        if (player.position.x - transform.position.x > destroy_XPos) DestroyEnemy();
     }
 
     void FoundPlayer()

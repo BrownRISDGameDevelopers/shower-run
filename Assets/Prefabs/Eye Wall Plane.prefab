@@ -120,4 +120,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxTrailingDistance: 20
-  minSpeed: 0.5
+  minSpeed: 0.8

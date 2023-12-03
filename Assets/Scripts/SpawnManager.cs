@@ -20,6 +20,14 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] Transform mobSpawnSpot;
     [SerializeField] GameObject mob;
 
+    [SerializeField] float mobSpawnHeight;
+
+    // [SerializeField] private float minSpawnRate = 8.0f; // seconds
+    // [SerializeField] private float maxSpawnRate = 15.0f; // seconds
+    // private float extraSpawnTimer = UnityEngine.Random.Range(0, minSpawnRate); 
+    // private float extraSpawnRate = UnityEngine.Random.Range(minSpawnRate, maxSpawnRate); 
+
+
     bool canSpawnEnemy = true;
 
     // Start is called before the first frame update
@@ -35,6 +43,7 @@ public class SpawnManager : MonoBehaviour
     {
         CheckPlayerXBounds();
     }
+
 
     void CheckPlayerXBounds()
     {
@@ -63,7 +72,7 @@ public class SpawnManager : MonoBehaviour
 
     void SpawnMob()
     {
-        Instantiate(mob, mobSpawnSpot.position + new Vector3(0, 1, 0), mobSpawnSpot.rotation);
+        Instantiate(mob, mobSpawnSpot.position + new Vector3(0, mobSpawnHeight, 0), mobSpawnSpot.rotation);
     }
 
     void ChooseRandomSegments()
@@ -91,7 +100,6 @@ public class SpawnManager : MonoBehaviour
 
             float spawnXPos = Random.Range(xStartingPos, xEndingPos);
 
-            Debug.Log("Value is : " + spawnXPos);
             x_SpawnPoints.Add(spawnXPos);
         }
     }

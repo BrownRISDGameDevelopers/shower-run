@@ -29,6 +29,10 @@ public class PlaneMovement : MonoBehaviour
             {
                 gameObject.transform.position += new Vector3(minSpeed * Time.deltaTime, 0f, 0f);
             }
+            if (System.Math.Abs(planePos.z - GameManager.Instance.Player.transform.position.z) > maxTrailingDistance) {
+                gameObject.transform.position =
+                    new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, GameManager.Instance.Player.transform.position.z);
+            }
         }
     }
 

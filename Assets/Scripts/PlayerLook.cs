@@ -5,6 +5,8 @@ public class PlayerLook : MonoBehaviour
     [SerializeField]
     private float sensitivity = 1f;
 
+    [SerializeField] private bool godMode;
+
     private PlayerInputActions _actions;
     private float _verticalLook = 0f;
     private float _horizontalLook = 0f;
@@ -14,7 +16,7 @@ public class PlayerLook : MonoBehaviour
     void Awake()
     {
         _actions = new PlayerInputActions();
-        //Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
@@ -53,7 +55,9 @@ public class PlayerLook : MonoBehaviour
 
     void OnFound()
     {
-        canLook = false;
+        if (!godMode) {
+            canLook = false;
+        }
     }
 
     public void OnEnable()

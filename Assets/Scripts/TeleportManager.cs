@@ -73,10 +73,12 @@ public class TeleportManager : MonoBehaviour
         player.position = teleportToPoints[DetermineTeleportIndex(hallway)].position;
 
         //Setting rotation
-        player.transform.rotation = teleportToPoints[DetermineTeleportIndex(hallway)].rotation;
+        // player.transform.rotation = teleportToPoints[DetermineTeleportIndex(hallway)].rotation;
+        player.transform.rotation = Quaternion.Euler(0, 90, 0); // Faces forward along the positive X-axis
+
 
         Rigidbody rb = player.GetComponent<Rigidbody>();
-        rb.velocity = new Vector3(0, 0, 0);
+        rb.velocity = new Vector3(System.Math.Abs(rb.velocity.z), 0, 0);
     }
 
     int DetermineTeleportIndex(TeleportController.HallwayTypes hallway)

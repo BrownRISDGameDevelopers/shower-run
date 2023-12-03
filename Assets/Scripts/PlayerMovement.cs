@@ -36,19 +36,19 @@ public class PlayerMovement : MonoBehaviour
 
         if (receivedMoveInput)
         {
-            if (!moveAudioStarted)
+            if (!moveAudioStarted || !running.isPlaying)
             {
                 running.Play();
                 moveAudioStarted = true;
-                print("playing audio");
             }
             _playerBody.AddRelativeForce(moveDirection.normalized * (multiplier * relativeSpeedMultiplier));
         }
-        else
+        // Assuming velocity is a Vector3 variable representing the object's velocity
+        else if (_playerBody.velocity.magnitude < limit / 4)
         {
             running.Pause();
-            moveAudioStarted = false;
-        }
+            moveAudioStarted = false;   
+        }           
     }
 
     private bool ReceiveMoveInput(Vector3 moveDirection)
