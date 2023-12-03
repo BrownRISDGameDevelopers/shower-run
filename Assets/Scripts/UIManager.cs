@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject pauseScreen;
     [SerializeField] GameObject gameOverScreen;
     [SerializeField] GameObject wonScreen;
+    [SerializeField] GameObject tutorialScreen;
 
     bool paused = false;
 
@@ -21,16 +22,21 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         _actions = new PlayerInputActions();
+
+        if(SceneManager.GetActiveScene().name == "MainMenu") return;
+        tutorialScreen.SetActive(true);
     }
 
     private void OnEnable()
     {
+        if(SceneManager.GetActiveScene().name == "MainMenu") return;
         EnemyController.foundPlayer += OnGameOver;
         TeleportManager.Instance.WonGame += OnGameWon;
     }
 
     private void OnDisable()
     {
+        if(SceneManager.GetActiveScene().name == "MainMenu") return;
         EnemyController.foundPlayer -= OnGameOver;
         TeleportManager.Instance.WonGame -= OnGameWon;
     }
