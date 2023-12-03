@@ -14,7 +14,7 @@ public class PlayerLook : MonoBehaviour
     void Awake()
     {
         _actions = new PlayerInputActions();
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()

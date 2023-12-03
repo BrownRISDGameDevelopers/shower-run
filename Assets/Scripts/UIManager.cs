@@ -21,6 +21,9 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
         _actions = new PlayerInputActions();
 
         if(SceneManager.GetActiveScene().name == "MainMenu") return;
@@ -49,6 +52,12 @@ public class UIManager : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene("hearnest");
+    }
+
+    public void TurnOffMouse()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void TogglePauseScreen()

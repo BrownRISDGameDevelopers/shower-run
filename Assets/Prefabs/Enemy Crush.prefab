@@ -155,8 +155,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48f01039c15624e9c87bd2385bae4608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 5
-  incomingRange: 25
+  walkSpeed: -8
+  incomingRange: 15
   passedPlayerRange: 10
   destroy_XPos: -50
 --- !u!82 &24017577260012156
@@ -180,7 +180,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 25
+  MaxDistance: 75
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
