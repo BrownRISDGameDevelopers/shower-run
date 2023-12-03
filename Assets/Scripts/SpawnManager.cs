@@ -63,7 +63,7 @@ public class SpawnManager : MonoBehaviour
 
     void SpawnMob()
     {
-        Instantiate(mob, mobSpawnSpot.position, Quaternion.identity);
+        Instantiate(mob, mobSpawnSpot.position + new Vector3(0, 1, 0), mobSpawnSpot.rotation);
     }
 
     void ChooseRandomSegments()
