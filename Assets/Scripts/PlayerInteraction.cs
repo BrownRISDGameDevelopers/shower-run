@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using System;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class PlayerInteraction : MonoBehaviour
     private Quaternion _hidingSpotRotation;
     private AudioSource running;
     private AudioSource ambientNoise;
+
+    public static event Action touchedPlayer;
 
     void Awake()
     {
@@ -51,6 +54,7 @@ public class PlayerInteraction : MonoBehaviour
             //_playerBody.isKinematic = true; // stopping movement from key input
             GetComponentInChildren<PlayerMovement>().OnDisable(); //stopping movement & sounds from key input
             GetComponentInChildren<PlayerLook>().OnDisable(); // disables ability to look around based on mouse input
+            touchedPlayer?.Invoke();
         }
     }
 
