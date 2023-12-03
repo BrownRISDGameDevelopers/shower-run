@@ -46,7 +46,7 @@ public class EnemyController : MonoBehaviour
 
     void CheckIfPlayerInRange()
     {
-        if (CheckDistanceToPlayer() < range && !GameManager.Instance.isHiding) FoundPlayer();
+        if (CheckDistanceToPlayer() < range && !GameManager.Instance.isHiding && !(TeleportManager.Instance.depth == 4 && GameManager.Instance.Player.GetComponent<Rigidbody>().velocity.magnitude < 1.0f)) FoundPlayer();
     }
 
     void CheckIfPassedPlayer()
