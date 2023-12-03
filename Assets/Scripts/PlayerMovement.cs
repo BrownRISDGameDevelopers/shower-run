@@ -34,10 +34,13 @@ public class PlayerMovement : MonoBehaviour
         float relativeSpeedMultiplier = limit - Mathf.Clamp(Mathf.Abs(Vector3.Dot(_playerBody.velocity, moveDirection.normalized)), 0f, 1f);
         bool receivedMoveInput = ReceiveMoveInput(moveDirection);
 
+        Debug.Log("0)force : " + moveDirection);
         if (receivedMoveInput)
         {
+            Debug.Log("1)input recieved");
             if (!moveAudioStarted || !running.isPlaying)
             {
+                Debug.Log("2)sound");
                 running.Play();
                 moveAudioStarted = true;
             }

@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviour
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        Time.timeScale = 0;
 
         _actions = new PlayerInputActions();
 
@@ -33,7 +34,7 @@ public class UIManager : MonoBehaviour
     private void OnEnable()
     {
         if(SceneManager.GetActiveScene().name == "MainMenu") return;
-        EnemyController.foundPlayer += OnGameOver;
+        EnemyController.foundPlayer += OnGameOverDelay;
         PlayerInteraction.touchedPlayer += OnGameOver;
         TeleportManager.WonGame += OnGameWon;
     }
@@ -41,7 +42,7 @@ public class UIManager : MonoBehaviour
     private void OnDisable()
     {
         if(SceneManager.GetActiveScene().name == "MainMenu") return;
-        EnemyController.foundPlayer -= OnGameOver;
+        EnemyController.foundPlayer -= OnGameOverDelay;
         PlayerInteraction.touchedPlayer -= OnGameOver;
         TeleportManager.WonGame -= OnGameWon;
     }
@@ -60,6 +61,7 @@ public class UIManager : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        Time.timeScale = 1;
     }
 
     void TogglePauseScreen()
@@ -103,5 +105,16 @@ public class UIManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         gameOverScreen.SetActive(true);
         Time.timeScale = 0;
+    }
+
+    void OnGameOverDelay()
+    {
+        StartCoroutine(GameOverDelay());
+    }
+
+    IEnumerator GameOverDelay()
+    {
+        yield return new WaitForSeconds(.5f);
+        OnGameOver();
     }
 }
