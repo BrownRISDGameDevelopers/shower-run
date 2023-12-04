@@ -48,9 +48,9 @@ public class PlayerInteraction : MonoBehaviour
         // is called when the player collides with another object
         if (other.gameObject == eyeWall)
         {
-            AudioListener.volume = 0;
-            Debug.Log("Player Dies");
-            GameManager.Instance.isDead = true; // setting GameManager boolean to indicate player death
+            // AudioListener.volume = 0;
+            // Debug.Log("Player Dies");
+            // GameManager.Instance.isDead = true; // setting GameManager boolean to indicate player death
             //_playerBody.isKinematic = true; // stopping movement from key input
             GetComponent<PlayerMovement>().OnDisable(); //stopping movement & sounds from key input
             GetComponentInChildren<PlayerLook>().OnDisable(); // disables ability to look around based on mouse input

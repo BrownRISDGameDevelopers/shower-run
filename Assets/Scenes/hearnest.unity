@@ -4695,6 +4695,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6604984124344663122, guid: 7cf102ead6c74e74aa334f62bfa47bca,
+        type: 3}
+      propertyPath: godMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604984124344663122, guid: 7cf102ead6c74e74aa334f62bfa47bca,
+        type: 3}
+      propertyPath: enemyHeight
+      value: 2.7
+      objectReference: {fileID: 0}
     - target: {fileID: 7736651621457550672, guid: 7cf102ead6c74e74aa334f62bfa47bca,
         type: 3}
       propertyPath: eyeWall
@@ -4946,6 +4956,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Hallway Crush
+      objectReference: {fileID: 0}
+    - target: {fileID: 5647918607153350783, guid: 83d2eba7aa8c441cd9e005ce84db5daa,
+        type: 3}
+      propertyPath: numberOfEnemySpawns
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -7359,6 +7374,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ingame_UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876240735140593652, guid: 2b963439a3e9c49d9b32545ef32bdbc4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
